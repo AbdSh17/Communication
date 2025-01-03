@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: untitled
+    id: task2Demodulation
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -28,24 +28,12 @@ options:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [32, 16.0]
     rotation: 0
     state: enabled
 
 blocks:
-- name: file_sample_rate
-  id: variable
-  parameters:
-    comment: ''
-    value: 48e3
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [200, 12]
-    rotation: 0
-    state: enabled
-- name: main_sample_rate
+- name: samp_rate
   id: variable
   parameters:
     comment: ''
@@ -54,22 +42,22 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 16.0]
+    coordinate: [224, 16.0]
     rotation: 0
     state: enabled
-- name: analog_sig_source_x_0
+- name: analog_sig_source_x_1
   id: analog_sig_source_x
   parameters:
     affinity: ''
     alias: ''
     amp: '1'
     comment: ''
-    freq: 1e4
+    freq: '10000'
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
     phase: '0'
-    samp_rate: main_sample_rate
+    samp_rate: samp_rate
     showports: 'False'
     type: float
     waveform: analog.GR_COS_WAVE
@@ -77,29 +65,28 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [112, 280.0]
+    coordinate: [48, 328.0]
     rotation: 0
     state: enabled
-- name: blocks_file_sink_0
-  id: blocks_file_sink
+- name: audio_sink_0
+  id: audio_sink
   parameters:
     affinity: ''
     alias: ''
-    append: 'False'
     comment: ''
-    file: modulated_signal.dat
-    type: float
-    unbuffered: 'False'
-    vlen: '1'
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: samp_rate
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 96.0]
+    coordinate: [952, 56.0]
     rotation: 0
     state: enabled
-- name: blocks_float_to_complex_0
-  id: blocks_float_to_complex
+- name: blocks_complex_to_float_0
+  id: blocks_complex_to_float
   parameters:
     affinity: ''
     alias: ''
@@ -111,14 +98,36 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 208.0]
+    coordinate: [312, 176.0]
     rotation: 0
     state: disabled
-- name: blocks_multiply_xx_0
-  id: blocks_multiply_xx
+- name: blocks_file_source_0
+  id: blocks_file_source
   parameters:
     affinity: ''
     alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: modulated_signal.dat
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    repeat: 'True'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 24.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_xx_0_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: mul
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -129,101 +138,120 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 192.0]
+    coordinate: [592, 176.0]
     rotation: 0
     state: enabled
-- name: blocks_null_source_0
-  id: blocks_null_source
+- name: blocks_null_sink_0
+  id: blocks_null_sink
   parameters:
     affinity: ''
     alias: ''
-    bus_structure_source: '[[0,],]'
+    bus_structure_sink: '[[0,],]'
     comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_outputs: '1'
+    num_inputs: '1'
     type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [608, 296.0]
+    coordinate: [544, 312.0]
     rotation: 0
     state: disabled
-- name: blocks_wavfile_source_0_0
-  id: blocks_wavfile_source
+- name: iio_pluto_source_0
+  id: iio_pluto_source
   parameters:
     affinity: ''
     alias: ''
-    comment: ''
-    file: C:\Users\HP\Music\communications_project\trail_record.wav
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    nchan: '1'
-    repeat: 'True'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [112, 176.0]
-    rotation: 0
-    state: enabled
-- name: iio_pluto_sink_0
-  id: iio_pluto_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    attenuation1: '10.0'
     bandwidth: '20000000'
+    bbdc: 'True'
     buffer_size: '32768'
     comment: ''
-    cyclic: 'False'
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
     frequency: '2400000000'
     fstop: '0'
-    len_tag_key: ''
-    samplerate: main_sample_rate
+    gain1: '''slow_attack'''
+    len_tag_key: packet_len
+    manual_gain1: '64'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quadrature: 'True'
+    rfdc: 'True'
+    samplerate: samp_rate
     type: fc32
     uri: ''
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [976, 160.0]
+    coordinate: [48, 108.0]
     rotation: 0
     state: disabled
-- name: rational_resampler_xxx_0
-  id: rational_resampler_xxx
+- name: low_pass_filter_0
+  id: low_pass_filter
   parameters:
     affinity: ''
     alias: ''
+    beta: '6.76'
     comment: ''
+    cutoff_freq: '25000'
     decim: '1'
-    fbw: '0'
-    interp: ' 21'
+    gain: '1'
+    interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
-    taps: '[]'
-    type: fff
+    samp_rate: samp_rate
+    type: fir_filter_fff
+    width: '48000'
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 160.0]
+    coordinate: [752, 136.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: '0'
+    fftsize: '1024'
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: float
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [936, 264.0]
     rotation: 0
     state: enabled
 
 connections:
-- [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
-- [blocks_float_to_complex_0, '0', iio_pluto_sink_0, '0']
-- [blocks_multiply_xx_0, '0', blocks_file_sink_0, '0']
-- [blocks_multiply_xx_0, '0', blocks_float_to_complex_0, '0']
-- [blocks_null_source_0, '0', blocks_float_to_complex_0, '1']
-- [blocks_wavfile_source_0_0, '0', rational_resampler_xxx_0, '0']
-- [rational_resampler_xxx_0, '0', blocks_multiply_xx_0, '0']
+- [analog_sig_source_x_1, '0', blocks_multiply_xx_0_0, '1']
+- [blocks_complex_to_float_0, '0', blocks_multiply_xx_0_0, '0']
+- [blocks_complex_to_float_0, '1', blocks_null_sink_0, '0']
+- [blocks_file_source_0, '0', blocks_multiply_xx_0_0, '0']
+- [blocks_multiply_xx_0_0, '0', low_pass_filter_0, '0']
+- [iio_pluto_source_0, '0', blocks_complex_to_float_0, '0']
+- [low_pass_filter_0, '0', audio_sink_0, '0']
+- [low_pass_filter_0, '0', qtgui_sink_x_0, '0']
 
 metadata:
   file_format: 1
