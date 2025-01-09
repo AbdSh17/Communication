@@ -51,7 +51,9 @@ blocks:
     affinity: ''
     alias: Carrier
     amp: '1'
-    comment: ''
+    comment: 'Carrier signal - Sin
+
+      Frequency: 10KHz  ---  Amplitude: 1'
     freq: 1e4
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -82,7 +84,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1024, 360.0]
+    coordinate: [1032, 352.0]
     rotation: 0
     state: disabled
 - name: blocks_complex_to_float_0
@@ -98,7 +100,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 152.0]
+    coordinate: [280, 176.0]
     rotation: 0
     state: disabled
 - name: blocks_file_source_0
@@ -107,8 +109,8 @@ blocks:
     affinity: ''
     alias: ''
     begin_tag: pmt.PMT_NIL
-    comment: ''
-    file: nabeel_signal.dat
+    comment: reciving the transmitted signal
+    file: sin_wave.dat
     length: '0'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -128,7 +130,7 @@ blocks:
   parameters:
     affinity: ''
     alias: mul
-    comment: ''
+    comment: C` * S
     maxoutbuf: '0'
     minoutbuf: '0'
     num_inputs: '2'
@@ -155,18 +157,18 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 264.0]
+    coordinate: [432, 272.0]
     rotation: 0
     state: disabled
 - name: iio_pluto_source_0
   id: iio_pluto_source
   parameters:
     affinity: ''
-    alias: ''
+    alias: pluto_task1_modulatiom
     bandwidth: '20000000'
     bbdc: 'True'
     buffer_size: '32768'
-    comment: ''
+    comment: A pluto block  for reciving the signal
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
@@ -186,17 +188,17 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [56, 84.0]
+    coordinate: [40, 108.0]
     rotation: 0
     state: disabled
 - name: low_pass_filter_0
   id: low_pass_filter
   parameters:
     affinity: ''
-    alias: ''
+    alias: LPF_Sin
     beta: '6.76'
-    comment: ''
-    cutoff_freq: '1009'
+    comment: Low pass filter to gain the signal at origin
+    cutoff_freq: '1001'
     decim: '1'
     gain: '1'
     interp: '1'
@@ -219,7 +221,14 @@ blocks:
     affinity: ''
     alias: ''
     bw: sample_rate
-    comment: ''
+    comment: 'for printing the signal after demodulation
+
+
+      note: the freq. domain ideal wave is delta (S)
+
+      but the signal will be more like a bell shape
+
+      due to many reasons'
     fc: '0'
     fftsize: '1024'
     gui_hint: ''
@@ -239,7 +248,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1000, 80.0]
+    coordinate: [936, 16.0]
     rotation: 0
     state: enabled
 

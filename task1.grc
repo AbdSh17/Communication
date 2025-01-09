@@ -51,7 +51,9 @@ blocks:
     affinity: ''
     alias: Message
     amp: '0.5'
-    comment: ''
+    comment: 'Message signal - Sin
+
+      Frequency: 1KHz  ---  Amplitude: 0.5'
     freq: 1e3
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -74,7 +76,9 @@ blocks:
     affinity: ''
     alias: Carrier
     amp: '1'
-    comment: ''
+    comment: 'Carrier signal - Sin
+
+      Frequency: 10KHz  ---  Amplitude: 1'
     freq: 1e4
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -88,7 +92,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [96, 288.0]
+    coordinate: [88, 312.0]
     rotation: 0
     state: enabled
 - name: blocks_file_sink_0
@@ -97,8 +101,8 @@ blocks:
     affinity: ''
     alias: ''
     append: 'False'
-    comment: ''
-    file: nabeel_signal.dat
+    comment: saving the transmitted signal
+    file: sin_wave.dat
     type: float
     unbuffered: 'False'
     vlen: '1'
@@ -106,7 +110,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 88.0]
+    coordinate: [632, 88.0]
     rotation: 0
     state: enabled
 - name: blocks_float_to_complex_0
@@ -130,7 +134,7 @@ blocks:
   parameters:
     affinity: ''
     alias: mul
-    comment: ''
+    comment: Carrier * Message
     maxoutbuf: '0'
     minoutbuf: '0'
     num_inputs: '2'
@@ -140,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 216.0]
+    coordinate: [384, 232.0]
     rotation: 0
     state: enabled
 - name: blocks_null_source_0
@@ -166,11 +170,11 @@ blocks:
   id: iio_pluto_sink
   parameters:
     affinity: ''
-    alias: ''
+    alias: pluto_task1_modulation
     attenuation1: '10.0'
     bandwidth: '20000000'
     buffer_size: '32768'
-    comment: ''
+    comment: A pluto block  for reciving the signal
     cyclic: 'False'
     filter: ''
     filter_source: '''Auto'''
@@ -192,9 +196,16 @@ blocks:
   id: qtgui_sink_x
   parameters:
     affinity: ''
-    alias: ''
+    alias: origin_GUI_task1
     bw: sample_rate
-    comment: ''
+    comment: 'for printing the signal after demodulation
+
+
+      note: the freq. domain ideal wave is delta (S)
+
+      but printing the signal using FFT
+
+      will give a non-idea signal'
     fc: '0'
     fftsize: '1024'
     gui_hint: ''
@@ -214,7 +225,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 64.0]
+    coordinate: [328, 24.0]
     rotation: 0
     state: enabled
 

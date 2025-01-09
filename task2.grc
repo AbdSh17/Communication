@@ -61,9 +61,11 @@ blocks:
   id: analog_sig_source_x
   parameters:
     affinity: ''
-    alias: ''
+    alias: Carrier
     amp: '1'
-    comment: ''
+    comment: 'Carrier signal - Cos
+
+      Frequency: 10KHz  ---  Amplitude: 1'
     freq: 1e4
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -77,7 +79,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [112, 280.0]
+    coordinate: [112, 320.0]
     rotation: 0
     state: enabled
 - name: blocks_file_sink_0
@@ -86,7 +88,7 @@ blocks:
     affinity: ''
     alias: ''
     append: 'False'
-    comment: ''
+    comment: saving the transmitted signal
     file: modulated_signal.dat
     type: float
     unbuffered: 'False'
@@ -95,7 +97,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 96.0]
+    coordinate: [728, 88.0]
     rotation: 0
     state: enabled
 - name: blocks_float_to_complex_0
@@ -119,7 +121,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    comment: ''
+    comment: Message * Carrier
     maxoutbuf: '0'
     minoutbuf: '0'
     num_inputs: '2'
@@ -155,8 +157,10 @@ blocks:
   id: blocks_wavfile_source
   parameters:
     affinity: ''
-    alias: ''
-    comment: ''
+    alias: pre_recorde
+    comment: 'pre-recorded file with .wav extintion
+
+      Sample Rate: 48k - sampled by an online tool'
     file: C:\Users\HP\Music\communications_project\trail_record.wav
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -166,7 +170,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [112, 176.0]
+    coordinate: [104, 128.0]
     rotation: 0
     state: enabled
 - name: iio_pluto_sink_0
@@ -200,7 +204,9 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    comment: ''
+    comment: 'Resample the signal from
+
+      48K -> 1M --- ( 1M / 48K ~= 21 )'
     decim: '1'
     fbw: '0'
     interp: ' 21'
@@ -212,7 +218,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 160.0]
+    coordinate: [376, 112.0]
     rotation: 0
     state: enabled
 
