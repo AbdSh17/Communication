@@ -215,7 +215,7 @@ blocks:
     affinity: ''
     alias: ''
     attenuation1: '10.0'
-    bandwidth: '20000000'
+    bandwidth: main_sample_rate
     buffer_size: '32768'
     comment: "Pluto device\n where it transmit the signal"
     cyclic: 'False'

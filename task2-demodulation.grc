@@ -231,8 +231,8 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bandwidth: '20000000'
-    bbdc: 'True'
+    bandwidth: main_sample_rate
+    bbdc: 'False'
     buffer_size: '32768'
     comment: 'Pluto device
 
