@@ -54,7 +54,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 16.0]
+    coordinate: [336, 16.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -65,8 +65,8 @@ blocks:
     amp: '1'
     comment: 'Carrier signal - Cos
 
-      Frequency: 10KHz  ---  Amplitude: 1'
-    freq: 1e4
+      Frequency: 200KHz  ---  Amplitude: 1'
+    freq: 200e3
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -96,7 +96,24 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [928, 360.0]
+    coordinate: [568, 56.0]
+    rotation: 0
+    state: disabled
+- name: audio_sink_0_0
+  id: audio_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: file_sample_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 472.0]
     rotation: 0
     state: enabled
 - name: blocks_file_sink_0
@@ -106,23 +123,25 @@ blocks:
     alias: ''
     append: 'False'
     comment: saving the transmitted signal
-    file: modulated_signal.dat
-    type: float
+    file: C:\Users\HP\Music\communications_project\modulated_signal.dat
+    type: complex
     unbuffered: 'False'
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 88.0]
+    coordinate: [976, 32.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_float_to_complex_0
   id: blocks_float_to_complex
   parameters:
     affinity: ''
     alias: ''
-    comment: ''
+    comment: 'Pluto only takes float value
+
+      while we were using complex'
     maxoutbuf: '0'
     minoutbuf: '0'
     vlen: '1'
@@ -178,7 +197,7 @@ blocks:
     comment: 'pre-recorded file with .wav extintion
 
       Sample Rate: 48k - sampled by an online tool'
-    file: C:\Users\HP\Music\communications_project\trail_record.wav
+    file: C:\Users\HP\Music\communications_project\ankra.wav
     maxoutbuf: '0'
     minoutbuf: '0'
     nchan: '1'
@@ -198,7 +217,7 @@ blocks:
     attenuation1: '10.0'
     bandwidth: '20000000'
     buffer_size: '32768'
-    comment: ''
+    comment: "Pluto device\n where it transmit the signal"
     cyclic: 'False'
     filter: ''
     filter_source: '''Auto'''
@@ -214,6 +233,42 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [976, 160.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: '48000'
+    comment: 'for printing the signal after demodulation
+
+
+      note: the freq. domain ideal wave is delta (S)
+
+      but the signal will be more like a bell shape
+
+      due to many reasons'
+    fc: '0'
+    fftsize: '1024'
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: float
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [672, 424.0]
     rotation: 0
     state: enabled
 - name: rational_resampler_xxx_0
@@ -241,12 +296,14 @@ blocks:
 
 connections:
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
+- [blocks_float_to_complex_0, '0', blocks_file_sink_0, '0']
 - [blocks_float_to_complex_0, '0', iio_pluto_sink_0, '0']
-- [blocks_multiply_xx_0, '0', audio_sink_0, '0']
-- [blocks_multiply_xx_0, '0', blocks_file_sink_0, '0']
 - [blocks_multiply_xx_0, '0', blocks_float_to_complex_0, '0']
 - [blocks_null_source_0, '0', blocks_float_to_complex_0, '1']
+- [blocks_wavfile_source_0_0, '0', audio_sink_0_0, '0']
+- [blocks_wavfile_source_0_0, '0', qtgui_sink_x_0, '0']
 - [blocks_wavfile_source_0_0, '0', rational_resampler_xxx_0, '0']
+- [rational_resampler_xxx_0, '0', audio_sink_0, '0']
 - [rational_resampler_xxx_0, '0', blocks_multiply_xx_0, '0']
 
 metadata:
