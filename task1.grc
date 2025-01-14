@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 12]
+    coordinate: [232, 0.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -92,7 +92,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [88, 312.0]
+    coordinate: [80, 384.0]
     rotation: 0
     state: enabled
 - name: blocks_file_sink_0
@@ -110,9 +110,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [632, 88.0]
+    coordinate: [1072, 12.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_float_to_complex_0
   id: blocks_float_to_complex
   parameters:
@@ -126,9 +126,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 232.0]
+    coordinate: [1016, 228.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_multiply_xx_0
   id: blocks_multiply_xx
   parameters:
@@ -144,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [384, 232.0]
+    coordinate: [792, 212.0]
     rotation: 0
     state: enabled
 - name: blocks_null_source_0
@@ -163,9 +163,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [368, 360.0]
+    coordinate: [784, 376.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: iio_pluto_sink_0
   id: iio_pluto_sink
   parameters:
@@ -189,9 +189,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [792, 184.0]
+    coordinate: [1264, 148.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_sink_x_0_0
   id: qtgui_sink_x
   parameters:
@@ -225,7 +225,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 24.0]
+    coordinate: [440, 36.0]
     rotation: 0
     state: enabled
 
@@ -233,8 +233,8 @@ connections:
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
 - [analog_sig_source_x_0, '0', qtgui_sink_x_0_0, '0']
 - [analog_sig_source_x_1, '0', blocks_multiply_xx_0, '1']
+- [blocks_float_to_complex_0, '0', blocks_file_sink_0, '0']
 - [blocks_float_to_complex_0, '0', iio_pluto_sink_0, '0']
-- [blocks_multiply_xx_0, '0', blocks_file_sink_0, '0']
 - [blocks_multiply_xx_0, '0', blocks_float_to_complex_0, '0']
 - [blocks_null_source_0, '0', blocks_float_to_complex_0, '1']
 
